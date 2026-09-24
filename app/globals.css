@@ -1,26 +1,227 @@
 @import "tailwindcss";
 
+/* ------------------------------------------------------------------
+   Lago Music — tokens
+   Paleta derivada del logotipo: carbón, grafito cálido, bronce,
+   champagne y marfil. El dorado se reserva para luz y señal.
+------------------------------------------------------------------- */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --carbon: #0e0a08;
+  --night: #140f0c;
+  --graphite: #302720;
+  --graphite-soft: #4a3d32;
+  --smoke: #9a8b7b;
+  --bronze: #a67033;
+  --bronze-deep: #7f5424;
+  --gold: #e8be76;
+  --ivory: #f1e8da;
+  --ivory-line: #d9ccb8;
+
+  --gutter: clamp(1rem, 3.2vw, 3rem);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-carbon: var(--carbon);
+  --color-night: var(--night);
+  --color-graphite: var(--graphite);
+  --color-graphite-soft: var(--graphite-soft);
+  --color-smoke: var(--smoke);
+  --color-bronze: var(--bronze);
+  --color-bronze-deep: var(--bronze-deep);
+  --color-gold: var(--gold);
+  --color-ivory: var(--ivory);
+  --color-ivory-line: var(--ivory-line);
+
+  --font-display: var(--font-antonio);
+  --font-sans: var(--font-instrument-sans);
+  --font-serif: var(--font-instrument-serif);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  background: var(--night);
+  color-scheme: dark;
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--night);
+  color: var(--ivory);
+  font-family: var(--font-instrument-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--gold);
+  color: var(--night);
+}
+
+:focus-visible {
+  outline: 1px solid var(--gold);
+  outline-offset: 4px;
+}
+
+/* ------------------------------------------------------------------
+   Tipografía utilitaria
+------------------------------------------------------------------- */
+.display {
+  font-family: var(--font-antonio), sans-serif;
+  text-transform: uppercase;
+  line-height: 0.86;
+  letter-spacing: -0.01em;
+}
+
+.label {
+  font-family: var(--font-instrument-sans), sans-serif;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+}
+
+.serif {
+  font-family: var(--font-instrument-serif), serif;
+  font-weight: 400;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ------------------------------------------------------------------
+   Grano fotográfico común
+------------------------------------------------------------------- */
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.07;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+/* ------------------------------------------------------------------
+   Enlaces / CTA
+------------------------------------------------------------------- */
+.link-line {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75em;
+}
+.link-line::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.35em;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.35;
+  transform-origin: left;
+  transition: opacity 0.4s var(--ease-out);
+}
+.link-line:hover::after,
+.link-line:focus-visible::after {
+  opacity: 1;
+}
+.link-line .arrow {
+  transition: transform 0.5s var(--ease-out);
+}
+.link-line:hover .arrow,
+.link-line:focus-visible .arrow {
+  transform: translateX(0.3em);
+}
+
+/* ------------------------------------------------------------------
+   Aparición al entrar en pantalla (se desactiva con reduced motion)
+------------------------------------------------------------------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 1s var(--ease-out),
+    transform 1.2s var(--ease-out);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.reveal[data-visible="true"] {
+  opacity: 1;
+  transform: none;
+}
+
+/* Radar: anillos de propagación */
+@keyframes ring {
+  from {
+    transform: scale(0.1);
+    opacity: 0.9;
+  }
+  to {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+.ring {
+  transform-origin: center;
+  transform-box: fill-box;
+  animation: ring 3.6s var(--ease-out) forwards;
+}
+
+@keyframes step-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.step-in {
+  animation: step-in 0.7s var(--ease-out) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .ring,
+  .step-in {
+    animation: none;
+  }
+  .ring {
+    opacity: 0.35;
+  }
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ------------------------------------------------------------------
+   Archivo de flyers: el foco en una pieza reduce la presencia del resto
+------------------------------------------------------------------- */
+.flyer {
+  transition:
+    opacity 0.6s var(--ease-out),
+    filter 0.6s var(--ease-out);
+  will-change: transform;
+}
+.flyer-wall:has(.flyer:focus-visible) .flyer:not(:focus-visible) {
+  opacity: 0.3;
+  filter: saturate(0.3) brightness(0.8);
+}
+@media (hover: hover) {
+  .flyer-wall:has(.flyer:hover) .flyer:not(:hover) {
+    opacity: 0.3;
+    filter: saturate(0.3) brightness(0.8);
+  }
 }

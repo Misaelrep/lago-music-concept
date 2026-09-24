@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Lago Music — prototipo conceptual V1
 
-## Getting Started
-
-First, run the development server:
+Prototipo de presentación para Lago Music (Jalisco, México). Todo el contenido es demostrativo: fechas demo, recintos por confirmar, sin métricas ni datos reales. Banda Torera del Valle es el único proyecto real mencionado.
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev     # http://localhost:3000
+npm run build && npm run start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Estructura de la página
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Velocidad | Secciones |
+|---|---|
+| Impacto | Hero · Próximos eventos · Archivo de flyers |
+| Pausa | Manifiesto |
+| Exploración | Calendario · Artistas · Shop |
+| Transición | La Señal se aplana hasta quedar recta; corte negro → marfil |
+| Conversión | Produce con Lago (conversacional) · Radar de demanda |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Sistema
 
-## Learn More
+- **Señal Lago** — `app/_lib/signal.ts` (geometría) y `app/_components/Signal.tsx`. En el hero, `HeroSignal.tsx` usa una máscara SVG para "activar" la fotografía a lo largo de la línea.
+- **Paleta** — tokens en `app/globals.css`: carbón, grafito cálido, bronce, champagne y marfil.
+- **Tipografía** — Antonio (fechas, programación, títulos), Instrument Sans (interfaz), Instrument Serif (narrativa puntual).
+- **Retícula hexagonal** — `Hex.tsx`, referencia a la rejilla del logo; sólo como textura mínima, marcadores, perforación de boleto y borde de transición.
+- `prefers-reduced-motion`: la Señal queda estática, sin parallax ni apariciones.
 
-To learn more about Next.js, take a look at the following resources:
+## Logotipo oficial
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+El logo no se redibuja. Colocar el archivo oficial en `public/brand/` con uno de estos nombres y se usará automáticamente en cabecera, hero y pie:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+public/brand/lago-music-logo.svg   (preferido)
+public/brand/lago-music-logo.png   (fondo transparente)
+public/brand/lago-music-logo.webp
+```
 
-## Deploy on Vercel
+Mientras no exista, se muestra un marcador de texto neutro ("Lago Music · logo oficial pendiente").
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Imágenes provisionales
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+`public/images/*.jpg` son escenas generadas proceduralmente (luz, humo, estructuras, siluetas) con un único gradiente de color para mantener una familia visual coherente. Son sustitutos temporales: reemplazar por fotografía real con los mismos nombres de archivo.
