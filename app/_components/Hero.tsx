@@ -1,13 +1,13 @@
 import Image from "next/image";
-import { EVENTS, REGION } from "../_lib/content";
+import { ARCHIVE, REGION } from "../_lib/content";
 import { HeroSignal } from "./HeroSignal";
-import { HexField, HexMark } from "./Hex";
+import { HexField } from "./Hex";
 import { Logo } from "./Logo";
 
 const HERO_IMAGE = "/images/hero-stage.jpg";
 
 export function Hero() {
-  const next = EVENTS[0];
+  const latest = ARCHIVE[0];
   return (
     <section
       id="inicio"
@@ -56,37 +56,24 @@ export function Hero() {
         </div>
 
         <article
-          aria-label="Próximo evento"
+          aria-label="Último evento en el archivo"
           className="order-1 border-t border-gold/40 pt-5 md:order-2 md:col-span-6 md:col-start-7 lg:col-span-5 lg:col-start-8"
         >
-          <div className="flex items-center justify-between">
-            <p className="label text-gold">Próximo evento</p>
-            <p className="label text-ivory/50">Fecha demo</p>
+          <div className="flex items-center justify-between gap-4">
+            <p className="label text-gold">Archivo Lago</p>
+            <p className="label text-ivory/55">Próximas fechas por anunciar</p>
           </div>
-          <div className="mt-4 flex items-end gap-5 md:gap-7">
-            <p className="display tabular text-[clamp(5.5rem,13vw,11rem)] font-semibold leading-[0.78] text-ivory">
-              {next.day}
-            </p>
-            <div className="pb-1.5">
-              <p className="display text-[clamp(1.6rem,3vw,2.6rem)] text-gold">{next.month}</p>
-              <p className="label mt-2 text-ivory/60">
-                {next.weekday} · {next.year}
-              </p>
-            </div>
-            <HexMark className="ml-auto mb-2 h-10 w-9 text-gold/70">
-              <span className="label !tracking-normal">{next.marker}</span>
-            </HexMark>
-          </div>
-          <h2 className="display mt-5 text-[clamp(1.9rem,3.4vw,3rem)] font-semibold">{next.title}</h2>
-          <div className="mt-3 flex flex-wrap items-center justify-between gap-4">
-            <p className="label text-ivory/60">
-              {next.venue} · Jalisco
-            </p>
+          <p className="display tabular mt-4 text-[clamp(5.5rem,13vw,11rem)] font-semibold leading-[0.78] text-ivory">
+            {latest.year}
+          </p>
+          <h2 className="display mt-5 text-[clamp(1.9rem,3.4vw,3rem)] font-semibold">{latest.title}</h2>
+          <div className="mt-4 flex flex-wrap items-center justify-between gap-4">
+            <p className="label text-ivory/60">Último evento en archivo</p>
             <a
-              href={`#${next.id}`}
+              href={`#${latest.id}`}
               className="label inline-flex items-center gap-3 bg-gold px-5 py-3 text-night transition-colors hover:bg-ivory"
             >
-              Ver evento <span aria-hidden="true">→</span>
+              Ver archivo <span aria-hidden="true">→</span>
             </a>
           </div>
         </article>

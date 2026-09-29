@@ -1,7 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  images: {
+    // 90 para logo y flyers del archivo (texto fino), 75 para fotografía.
+    qualities: [75, 90],
+  },
 };
 
 export default nextConfig;

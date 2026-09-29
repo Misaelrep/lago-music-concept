@@ -27,8 +27,8 @@ export function Footer() {
         </div>
       </div>
       <div className="relative mt-20 flex flex-col gap-2 border-t border-ivory/10 px-[var(--gutter)] pt-6 md:flex-row md:justify-between">
-        <p className="label text-ivory/35">Prototipo conceptual · V1</p>
-        <p className="label text-ivory/35">Contenido, fechas e imágenes provisionales</p>
+        <p className="label text-ivory/35">© Lago Music</p>
+        <p className="label text-ivory/35">Versión preliminar del sitio</p>
       </div>
     </footer>
   );

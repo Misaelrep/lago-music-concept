@@ -1,7 +1,6 @@
-import { Calendar } from "./_components/Calendar";
+import { Archive } from "./_components/Archive";
 import { Events } from "./_components/Events";
 import { Artists, Manifesto, Shop } from "./_components/Exploration";
-import { Flyers } from "./_components/Flyers";
 import { Footer } from "./_components/Footer";
 import { Header } from "./_components/Header";
 import { Hero } from "./_components/Hero";
@@ -14,7 +13,7 @@ export default function Home() {
   return (
     <>
       <a
-        href="#eventos"
+        href="#archivo"
         className="label sr-only z-[60] bg-gold px-4 py-3 text-night focus:not-sr-only focus:fixed focus:left-4 focus:top-4"
       >
         Saltar al contenido
@@ -23,14 +22,13 @@ export default function Home() {
       <main>
         {/* IMPACTO */}
         <Hero />
+        <Archive />
         <Events />
-        <Flyers />
 
         {/* pausa */}
         <Manifesto />
 
         {/* EXPLORACIÓN */}
-        <Calendar />
         <Artists />
         <Shop />
 

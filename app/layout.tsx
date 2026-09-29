@@ -23,7 +23,7 @@ const instrumentSerif = Instrument_Serif({
 export const metadata: Metadata = {
   title: "Lago Music — Eventos, música y cultura en vivo",
   description:
-    "Prototipo conceptual V1 de Lago Music. Jalisco, México. Contenido e imágenes provisionales.",
+    "Lago Music — eventos, música y cultura en vivo. Jalisco, México.",
 };
 
 export const viewport: Viewport = {

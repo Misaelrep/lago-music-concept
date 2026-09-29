@@ -108,7 +108,7 @@ export function Radar() {
                 <p className="serif text-2xl italic md:text-3xl">
                   “{sent.que}” · {sent.ciudad}
                 </p>
-                <p className="label mt-3 text-night/45">Señal enviada · prototipo: no se almacena</p>
+                <p className="label mt-3 text-night/45">Señal enviada · vista previa: aún no se almacena</p>
               </>
             ) : (
               <p className="label text-night/40">Esperando señal</p>

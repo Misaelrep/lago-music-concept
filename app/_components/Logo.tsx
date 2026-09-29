@@ -1,30 +1,16 @@
-import fs from "node:fs";
-import path from "node:path";
 import Image from "next/image";
+import { readAsset } from "../_lib/assets";
 
 // El logotipo oficial se usa tal cual, nunca redibujado.
 // Colocar el archivo en /public/brand/ con alguno de estos nombres.
-const CANDIDATES = ["lago-music-logo.svg", "lago-music-logo.png", "lago-music-logo.webp"];
+const CANDIDATES = ["/brand/lago-music-logo.png", "/brand/lago-music-logo.webp"];
 
 function findLogo() {
-  for (const name of CANDIDATES) {
-    const file = path.join(process.cwd(), "public", "brand", name);
-    if (fs.existsSync(file)) return `/brand/${name}`;
+  for (const src of CANDIDATES) {
+    const asset = readAsset(src);
+    if (asset) return asset;
   }
   return null;
-}
-
-/** Dimensiones intrínsecas del PNG/WebP (para next/image). */
-function readSize(src: string): { width: number; height: number } {
-  const file = path.join(process.cwd(), "public", src);
-  const buf = fs.readFileSync(file);
-  if (src.endsWith(".png") && buf.length > 24) {
-    return { width: buf.readUInt32BE(16), height: buf.readUInt32BE(20) };
-  }
-  if (src.endsWith(".webp") && buf.toString("ascii", 12, 16) === "VP8X") {
-    return { width: 1 + buf.readUIntLE(24, 3), height: 1 + buf.readUIntLE(27, 3) };
-  }
-  return { width: 1200, height: 600 };
 }
 
 type Props = {
@@ -37,9 +23,9 @@ type Props = {
 };
 
 export function Logo({ className = "", width, preload = false, compact = false }: Props) {
-  const src = findLogo();
+  const logo = findLogo();
 
-  if (!src) {
+  if (!logo) {
     // Marcador temporal mientras llega el archivo oficial: texto neutro,
     // deliberadamente sin intentar imitar el logotipo.
     return (
@@ -58,15 +44,15 @@ export function Logo({ className = "", width, preload = false, compact = false }
     );
   }
 
-  const { width: w, height: h } = src.endsWith(".svg") ? { width: 1200, height: 600 } : readSize(src);
   return (
     <Image
-      src={src}
+      src={logo.src}
       alt="Lago Music"
-      width={w}
-      height={h}
+      width={logo.width}
+      height={logo.height}
       preload={preload}
-      unoptimized={src.endsWith(".svg")}
+      quality={90}
+      sizes={`(min-width: 768px) 260px, 200px`}
       className={`h-auto ${className}`}
       style={{ width }}
     />

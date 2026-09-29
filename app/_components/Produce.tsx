@@ -273,7 +273,7 @@ export function Produce() {
                 <p className="serif mt-6 max-w-md text-xl italic leading-snug text-night/70">
                   En la versión final, el equipo de Lago continuaría esta conversación contigo.
                 </p>
-                <p className="label mt-8 text-night/40">Prototipo · no se envió ningún dato</p>
+                <p className="label mt-8 text-night/40">Vista previa · el formulario aún no envía datos</p>
               </div>
             )}
           </div>

@@ -1,93 +1,100 @@
-// Contenido demostrativo del prototipo V1.
-// Todo es provisional: fechas demo, recintos por confirmar, sin métricas.
-// Banda Torera del Valle es el único proyecto real mencionado.
+// Contenido de Lago Music.
+// ARCHIVE: eventos reales. Sólo datos proporcionados o visibles en los flyers.
+// EXAMPLE_EVENTS: ejemplos de formato para la cartelera — no son fechas reales.
+// Banda Torera del Valle es el único proyecto artístico real mencionado.
 
 export const REGION = "Jalisco · México";
 
-export type LagoEvent = {
+export type ArchiveEntry = {
   id: string;
-  /** Marcador conceptual — no es una numeración real. */
+  year: number;
+  title: string;
+  /** Flyer oficial en /public; si falta, la pieza se muestra como ficha textual. */
+  flyer?: string;
+  flyerAlt?: string;
+  /** Texto de la ficha (sólo hechos proporcionados). */
+  summary?: string;
+  /** Datos breves: lugar, colaboración, rol. */
+  facts?: string[];
+};
+
+export const ARCHIVE: ArchiveEntry[] = [
+  {
+    id: "expo-ganadera-jalisco-2025",
+    year: 2025,
+    title: "Expo Ganadera Jalisco",
+    flyer: "/images/archivo/expo-ganadera-jalisco-2025.jpg",
+    flyerAlt: "Flyer oficial de Expo Ganadera Jalisco 2025.",
+  },
+  {
+    id: "carnaval-sayula-2024",
+    year: 2024,
+    title: "Carnaval Sayula",
+    flyer: "/images/archivo/carnaval-sayula-2024.jpg",
+    flyerAlt: "Flyer oficial de Carnaval Sayula 2024.",
+  },
+  {
+    id: "feria-zapotlan-2022",
+    year: 2022,
+    title: "Feria Zapotlán",
+    summary:
+      "Lago Music participó en la organización y promoción vinculada a la programación musical de la Feria Zapotlán 2022.",
+    facts: ["Organización y promoción", "Programación musical"],
+  },
+  {
+    id: "dif-zapotlan-2020",
+    year: 2020,
+    title: "Evento DIF Zapotlán",
+    summary:
+      "Evento con causa realizado en colaboración con DIF Zapotlán y Lago Music en el Lienzo Charro de Ciudad Guzmán.",
+    facts: ["Evento con causa", "Lienzo Charro · Ciudad Guzmán"],
+  },
+];
+
+export type ExampleEvent = {
+  id: string;
   marker: string;
   title: string;
   kicker: string;
   format: string;
-  weekday: string;
-  day: string;
-  month: string;
-  monthIndex: number;
-  year: number;
-  venue: string;
   image: string;
   imageAlt: string;
 };
 
-export const EVENTS: LagoEvent[] = [
+/** Ejemplos de formato de cartelera. Se sustituirán por los flyers actuales. */
+export const EXAMPLE_EVENTS: ExampleEvent[] = [
   {
-    id: "concepto-a",
+    id: "ejemplo-a",
     marker: "A",
-    title: "Banda Torera del Valle",
-    kicker: "En vivo",
-    format: "Concierto",
-    weekday: "Sáb",
-    day: "14",
-    month: "Nov",
-    monthIndex: 10,
-    year: 2026,
-    venue: "Recinto por confirmar",
-    image: "/images/spot-stage.jpg",
-    imageAlt: "Micrófono solo bajo un cañón de luz sobre un escenario oscuro.",
-  },
-  {
-    id: "concepto-b",
-    marker: "B",
-    title: "Noche Lago",
-    kicker: "Formato club",
-    format: "Line-up por anunciar",
-    weekday: "Sáb",
-    day: "28",
-    month: "Nov",
-    monthIndex: 10,
-    year: 2026,
-    venue: "Recinto por confirmar",
+    title: "Concierto",
+    kicker: "Ejemplo de formato",
+    format: "Artista · recinto · boletos",
     image: "/images/crowd-wash.jpg",
-    imageAlt: "Público a contraluz con las manos arriba frente a un escenario iluminado.",
+    imageAlt: "Imagen provisional: público a contraluz frente a un escenario iluminado.",
   },
   {
-    id: "concepto-c",
-    marker: "C",
-    title: "Escenario Abierto",
-    kicker: "Ciclo de nuevas propuestas",
-    format: "Convocatoria en diseño",
-    weekday: "Sáb",
-    day: "12",
-    month: "Dic",
-    monthIndex: 11,
-    year: 2026,
-    venue: "Recinto por confirmar",
-    image: "/images/backstage-wings.jpg",
-    imageAlt: "Vista desde las piernas del escenario hacia haces de luz.",
-  },
-  {
-    id: "concepto-d",
-    marker: "D",
-    title: "Gran Formato",
-    kicker: "Festival",
-    format: "Concepto en desarrollo",
-    weekday: "Sáb",
-    day: "23",
-    month: "Ene",
-    monthIndex: 0,
-    year: 2027,
-    venue: "Recinto por confirmar",
+    id: "ejemplo-b",
+    marker: "B",
+    title: "Feria",
+    kicker: "Ejemplo de formato",
+    format: "Programación musical · varias fechas",
     image: "/images/structure-loadin.jpg",
-    imageAlt: "Estructuras de truss y luces de trabajo durante un montaje.",
+    imageAlt: "Imagen provisional: estructuras de truss durante un montaje.",
+  },
+  {
+    id: "ejemplo-c",
+    marker: "C",
+    title: "Evento con causa",
+    kicker: "Ejemplo de formato",
+    format: "En colaboración con instituciones",
+    image: "/images/spot-stage.jpg",
+    imageAlt: "Imagen provisional: micrófono bajo un cañón de luz.",
   },
 ];
 
 export const NAV = [
-  { href: "#eventos", label: "Eventos" },
   { href: "#archivo", label: "Archivo" },
-  { href: "#calendario", label: "Calendario" },
+  { href: "#eventos", label: "Próximos" },
   { href: "#artistas", label: "Artistas" },
   { href: "#shop", label: "Shop" },
 ];

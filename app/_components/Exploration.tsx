@@ -38,12 +38,8 @@ export function Artists() {
           </h2>
           <div className="mt-10 grid gap-8 border-t border-ivory/15 pt-6 md:grid-cols-9 md:gap-6">
             <p className="serif text-xl italic leading-snug text-ivory/75 md:col-span-5 md:text-2xl">
-              Único proyecto real presentado en este prototipo. Su espacio se completará con material oficial.
+              Perfil, fechas y material oficial en preparación.
             </p>
-            <div className="flex flex-col gap-3 md:col-span-4 md:items-end">
-              <p className="label text-ivory/50">Música en vivo · Jalisco</p>
-              <span className="label text-ivory/35">Perfil completo · próximamente</span>
-            </div>
           </div>
         </Reveal>
       </div>
@@ -80,7 +76,7 @@ export function Shop() {
     {
       id: "camiseta",
       name: "Camiseta Señal",
-      detail: "Algodón pesado · impresión en tinta dorada",
+      detail: "Diseño en desarrollo",
       art: (
         <div className="grid h-full place-items-center bg-graphite p-[12%]">
           <TeeMock />
@@ -90,7 +86,7 @@ export function Shop() {
     {
       id: "poster",
       name: "Póster de archivo",
-      detail: "Serigrafía · edición numerada",
+      detail: "Diseño en desarrollo",
       art: (
         <div className="grid h-full place-items-center bg-graphite p-[14%]">
           <div className="relative aspect-[2/3] h-full border-[10px] border-ivory shadow-[0_30px_50px_-20px_rgba(0,0,0,.8)]">
